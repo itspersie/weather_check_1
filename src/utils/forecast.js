@@ -7,7 +7,7 @@ const forecast = (latitude, longitude, callback) => {
     "," +
     longitude;
 
-  request({ url, json: true }, (error, {body}) => {
+  request({ url, json: true }, (error, { body }) => {
     if (error) {
       callback("unable to connect to weather service app", undefined);
     } else if (body.error) {
@@ -15,12 +15,14 @@ const forecast = (latitude, longitude, callback) => {
     } else {
       callback(
         undefined,
-        "weather forcast => " +
+        "weather forcast = " +
           body.current.weather_descriptions[0] +
-          "  its  " +
-          body.current.temperature +
-          " feels like " +
-          body.current.feelslike
+          " , its  " +
+          body.current.temperature + 
+          " degree Celsius feels like  " +
+          body.current.feelslike +
+          " , Humidity is " +
+          body.current.humidity
       );
     }
   });
